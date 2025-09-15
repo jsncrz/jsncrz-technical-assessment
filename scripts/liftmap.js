@@ -24,18 +24,18 @@ var navigationChangeListener = function () {
  */
 var updateHeader = function () {
 
-    var newHeader = document.querySelector("h1.lm-hero__header");
+    var newHeader = document.querySelector('h1.lm-hero__header');
     if (newHeader === null) {
         return;
     }
     newHeader.innerText = 'We are the best experimentation agency in the world';
 
     // add propositions list under the header
-    var valuePropositionList = document.createElement("ul");
-    valuePropositionList.classList.add("value-proposition-list");
-    const propositions = ["Increase conversion rates across your website", "Iterative site redesign", "Improve ROAS efficiency", "Standing or scaling an experimentation program", "Advanced customer research"];
+    var valuePropositionList = document.createElement('ul');
+    valuePropositionList.classList.add('value-proposition-list');
+    const propositions = ['Increase conversion rates across your website', 'Iterative site redesign', 'Improve ROAS efficiency', 'Standing or scaling an experimentation program', 'Advanced customer research'];
     propositions.forEach(function (proposition) {
-        var valueProposition = document.createElement("li");
+        var valueProposition = document.createElement('li');
         valueProposition.innerText = proposition;
         valuePropositionList.appendChild(valueProposition);
     })
@@ -47,7 +47,7 @@ var updateHeader = function () {
  */
 var changeWhyLiftMap = function () {
     // check if button exists
-    var whyLiftMapButton = document.querySelector("div.lm-hero__buttons button.btn-video");
+    var whyLiftMapButton = document.querySelector('div.lm-hero__buttons button.btn-video');
     if (whyLiftMapButton === null) {
         return;
     }
@@ -60,7 +60,7 @@ var changeWhyLiftMap = function () {
     whyLiftMapButton.remove();
 
     // add new event listener
-    whyLiftMapButton = document.querySelector("div.lm-hero__buttons button.btn-video");
+    whyLiftMapButton = document.querySelector('div.lm-hero__buttons button.btn-video');
     whyLiftMapButton.addEventListener('click', function (e) {
             e.preventDefault();
             document.querySelector('div.lm-why').scrollIntoView({
