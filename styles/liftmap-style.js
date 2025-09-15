@@ -1,0 +1,21 @@
+ const style = document.createElement('style');
+    style.textContent = `
+    .lm-hero .lm-hero__header {
+        font-size: 2.5rem !important;
+    }
+    .value-proposition-list {
+        list-style: none;
+        margin: .5rem 0 3.5rem;
+        max-width: 25rem;
+        color: #12a6ad;
+        z-index: 1;
+        position: relative;
+    }
+    .value-proposition-list li:before {
+        content: '✓';
+        margin-right: 10px;
+    }
+    .value-proposition-list li {
+    }
+    `;
+document.head.appendChild(style);
