@@ -42,6 +42,16 @@ var updateHeader = function () {
     newHeader.after(valuePropositionList);
 }
 
+
+var changeRequestDemoButton = function () {
+    // This gets the first button under the div class 'lm-hero__buttons'
+    var requestDemoButton = document.querySelector('div.lm-hero__buttons button');
+    if (requestDemoButton === null) {
+        return;
+    }
+    requestDemoButton.innerText = 'Contact Us';
+    
+}
 /**
  * Changes the event listener of the 'Why Liftmap' button to scroll to the Why Liftmap section when clicked
  */
@@ -75,6 +85,7 @@ var changeWhyLiftMap = function () {
 var callChanges = function () {
     updateHeader();
     changeWhyLiftMap();
+    changeRequestDemoButton();
 }
 callChanges();
 navigationChangeListener();
