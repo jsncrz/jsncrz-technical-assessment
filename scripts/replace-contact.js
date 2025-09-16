@@ -1,4 +1,4 @@
-var replaceContact = function () {
+let replaceContact = function () {
         const contactSection = document.createElement('div');
         contactSection.classList.add('contact-glassmorphism');
 
@@ -28,7 +28,7 @@ var replaceContact = function () {
                 createContactModal(forms);
         })
 }
-var createContactModal = function (modalContent) {
+let createContactModal = function (modalContent) {
         // Check if modal already exists and hide it
         const existingModal = document.getElementById('contact-modal');
         if (existingModal) {
@@ -82,14 +82,14 @@ var createContactModal = function (modalContent) {
                         </div>
                         `;
                 document.body.appendChild(modal);
-                var modalBody = modal.querySelector('.contact-modal-body');
+                let modalBody = modal.querySelector('.contact-modal-body');
                 for (i = 0; i < modalContent.length; i++) {
                         const currentModal = modalContent[i];
                         modalBody.append(currentModal);
-                        var modalDisplayStyle = currentModal.currentStyle ? currentModal.currentStyle.display :
+                        let modalDisplayStyle = currentModal.currentStyle ? currentModal.currentStyle.display :
                               getComputedStyle(currentModal, null).getPropertyValue('display');
                         modalDisplayStyle = modalDisplayStyle == 'block' ? 'grid' : 'none';
-                        var originalElements = Array.from(currentModal.querySelector('form').children);
+                        let originalElements = Array.from(currentModal.querySelector('form').children);
 
                         for (let i = 0; i < 2 ; i++) {
                                 originalElements[i].style.display = 'block'
@@ -119,7 +119,7 @@ var createContactModal = function (modalContent) {
                                         stepOneNextButton.style.display = 'none';
                                         stepTwoBackButton.style.display = 'block';
                                         stepTwoSubmitButton.style.display = 'block';
-                                        var originalElements = Array.from(currentModal.querySelector('form').children);
+                                        let originalElements = Array.from(currentModal.querySelector('form').children);
                                         for (let i = 0; i < 2 && i < originalElements.length; i++) {
                                                 originalElements[i].style.display = 'none'
                                         }
@@ -145,7 +145,7 @@ var createContactModal = function (modalContent) {
                                 stepOneNextButton.style.display = 'block';
                                 stepTwoBackButton.style.display = 'none';
                                 stepTwoSubmitButton.style.display = 'none';
-                                var originalElements = Array.from(currentModal.querySelector('form').children);
+                                let originalElements = Array.from(currentModal.querySelector('form').children);
                                 for (let i = 0; i < 2 && i < originalElements.length; i++) {
                                         originalElements[i].style.display = 'block'
                                 }
@@ -167,7 +167,7 @@ var createContactModal = function (modalContent) {
                                         stepOneNextButton.style.display = 'none';
                                         stepTwoBackButton.style.display = 'none';
                                         stepTwoSubmitButton.style.display = 'none';
-                                        var originalElements = Array.from(currentModal.querySelector('form').children);
+                                        let originalElements = Array.from(currentModal.querySelector('form').children);
                                 
                                         for (let i = 0; i < originalElements.length; i++) {
                                                 originalElements[i].style.display = 'none'
@@ -223,9 +223,9 @@ var createContactModal = function (modalContent) {
 }
 
 // import css
-var link = document.createElement('link');
+let link = document.createElement('link');
 link.setAttribute('rel', 'stylesheet');
-link.setAttribute('href', 'https://cdn.jsdelivr.net/gh/jsncrz/jsncrz-technical-assessment@main/styles/contact-style.css');
+link.setAttribute('href', 'https://cdn.jsdelivr.net/gh/jsncrz/jsncrz-technical-assessment/styles/contact-style.css');
 document.head.appendChild(link);
 
 replaceContact();

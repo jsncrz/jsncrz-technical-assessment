@@ -1,13 +1,13 @@
 
-var previousUrl = location.href;
+let previousUrl = location.href;
 /**
  * Sets up a mutation observer to detect when the url changes to https://liftmap.com/
  * and calls callChanges when this happens
  */
-var navigationChangeListener = function () {
+let navigationChangeListener = function () {
     // Add a mutation observer for detecting url changes and call changes
     // There might be other ways to do this but I'm more familiar with the concepts of observers
-    var observer = new MutationObserver(function (mutations) {
+    let observer = new MutationObserver(function (mutations) {
          if (location.href !== previousUrl && location.href === 'https://liftmap.com/') {
             callChanges();
         }
@@ -22,20 +22,20 @@ var navigationChangeListener = function () {
 /**
  * Updates the header of the page with a new text and adds a list of propositions under it
  */
-var updateHeader = function () {
+let updateHeader = function () {
 
-    var newHeader = document.querySelector('h1.lm-hero__header');
+    let newHeader = document.querySelector('h1.lm-hero__header');
     if (newHeader === null) {
         return;
     }
     newHeader.innerText = 'We are the best experimentation agency in the world';
 
     // add propositions list under the header
-    var valuePropositionList = document.createElement('ul');
+    let valuePropositionList = document.createElement('ul');
     valuePropositionList.classList.add('value-proposition-list');
     const propositions = ['Increase conversion rates across your website', 'Iterative site redesign', 'Improve ROAS efficiency', 'Standing or scaling an experimentation program', 'Advanced customer research'];
     propositions.forEach(function (proposition) {
-        var valueProposition = document.createElement('li');
+        let valueProposition = document.createElement('li');
         valueProposition.innerText = proposition;
         valuePropositionList.appendChild(valueProposition);
     })
@@ -43,9 +43,9 @@ var updateHeader = function () {
 }
 
 
-var changeRequestDemoButton = function () {
+let changeRequestDemoButton = function () {
     // This gets the first button under the div class 'lm-hero__buttons'
-    var requestDemoButton = document.querySelector('div.lm-hero__buttons button');
+    let requestDemoButton = document.querySelector('div.lm-hero__buttons button');
     if (requestDemoButton === null) {
         return;
     }
@@ -55,9 +55,9 @@ var changeRequestDemoButton = function () {
 /**
  * Changes the event listener of the 'Why Liftmap' button to scroll to the Why Liftmap section when clicked
  */
-var changeWhyLiftMap = function () {
+let changeWhyLiftMap = function () {
     // check if button exists
-    var whyLiftMapButton = document.querySelector('div.lm-hero__buttons button.btn-video');
+    let whyLiftMapButton = document.querySelector('div.lm-hero__buttons button.btn-video');
     if (whyLiftMapButton === null) {
         return;
     }
@@ -79,15 +79,15 @@ var changeWhyLiftMap = function () {
         });
 }
 // import css
-var link = document.createElement('link');
+let link = document.createElement('link');
 link.setAttribute('rel', 'stylesheet');
-link.setAttribute('href', 'https://cdn.jsdelivr.net/gh/jsncrz/jsncrz-technical-assessment@main/styles/liftmap.css');
+link.setAttribute('href', 'https://cdn.jsdelivr.net/gh/jsncrz/jsncrz-technical-assessment/styles/liftmap.css');
 document.head.appendChild(link);
 
 /**
  * Calls both updateHeader and changeWhyLiftMap functions to update the page content
  */
-var callChanges = function () {
+let callChanges = function () {
     updateHeader();
     changeWhyLiftMap();
     changeRequestDemoButton();
