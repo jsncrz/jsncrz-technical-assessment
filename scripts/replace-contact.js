@@ -69,6 +69,15 @@ var createContactModal = function (modalContent) {
                                         </div>
                                 </div>
                                 <div class="contact-modal-body">
+                                        <div class="contact-modal-thankyou hidden">
+                                                <div class="thank-you-container">
+                                                        <div class="thank-you-card">
+                                                                <h2>Thank You!</h2>
+                                                                <p>Your message has been successfully sent.  
+                                                                Our team will get back to you shortly.</p>
+                                                        </div>
+                                                </div>
+                                        </div>
                                 </div>
                         </div>
                         `;
@@ -154,6 +163,7 @@ var createContactModal = function (modalContent) {
                                         modal.querySelector('.inquiry-step .check-icon').classList.remove('hidden');
                                         modal.querySelector('.complete-step').classList.add('active');
                                         modal.querySelector('.complete-step').classList.remove('pending');
+                                        modal.querySelector('.contact-modal-thankyou').classList.remove('hidden');
                                         stepOneNextButton.style.display = 'none';
                                         stepTwoBackButton.style.display = 'none';
                                         stepTwoSubmitButton.style.display = 'none';
@@ -162,6 +172,9 @@ var createContactModal = function (modalContent) {
                                         for (let i = 0; i < originalElements.length; i++) {
                                                 originalElements[i].style.display = 'none'
                                         }
+                                        // TODO: Replace this with clearing every input since this doesn't work
+                                        // I also tried using the form.reset() method directly on the unchanged site but it also doesn't work
+                                        currentModal.querySelector('form').reset()
                                 } else {
                                         currentModal.querySelector('form').reportValidity();
                                 }
@@ -209,289 +222,10 @@ var createContactModal = function (modalContent) {
 
 }
 
-const contactModalStyle = document.createElement('style');
-contactModalStyle.textContent = `
-        #contact-modal-backdrop {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.5);
-                z-index: 9999;
-        }
-
-        #contact-modal {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 10000;
-        }
-
-        .contact-modal-content {
-                background: white;
-                padding: 30px;
-                border-radius: 8px;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-                max-width: 500px;
-                width: 90%;
-                position: relative;
-                animation: modalAppear 0.3s ease-out;
-        }
-
-        @keyframes modalAppear {
-                from {
-                        opacity: 0;
-                        transform: scale(0);
-                }
-                to {
-                        opacity: 1;
-                        transform: scale(1);
-                }
-        }
-
-        .contact-modal-title {
-                margin: 0;
-                color: #333;
-                font-size: 24px;
-                font-weight: 600;
-        }
-
-        .contact-modal-close {
-                position: absolute;
-                top: 15px;
-                right: 20px;
-                background: none;
-                border: none;
-                font-size: 28px;
-                cursor: pointer;
-                color: #666;
-                line-height: 1;
-                padding: 0;
-        }
-
-        .contact-modal-close:hover {
-                color: #000;
-        }
-        .contact-form__form {
-                background-color: #fff !important;
-        }
-        .hbspt-form .hs-error-msgs .hs-error-msg {
-                background-color: #fff !important;
-        }
-        .progress-container {
-            max-width: 350px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        .progress-tracker {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .progress-line {
-            position: absolute;
-            top: 47%;
-            left: 50px;
-            right: 50px;
-            height: 4px;
-            background: linear-gradient(to right, #4285f4 0%, #e0e0e0 0%);
-            /* background: linear-gradient(to right, #4285f4 50%, #e0e0e0 50%); */
-            /* background: linear-gradient(to right, #4285f4 100%, #e0e0e0 100%); */
-            transform: translateY(-50%);
-            transition: all 0.3s ease;
-            z-index: 1;
-        }
-
-        .check-icon {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            width: 24px;
-            height: 24px;
-            background-color: #34a853;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .check-icon::after {
-            content: '✓';
-            color: white;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        
-
-        .step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .step-circle {
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-            position: relative;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .step-circle.completed {
-            background-color: #4285f4;
-        }
-
-        .step-circle.active {
-            background-color: #4285f4;
-        }
-
-        .step-circle.pending {
-            background-color: #e0e0e0 ;
-            border: 2px solid #e0e0e0;
-        }
-
-        .step-icon {
-            font-size: 28px;
-            color: white;
-        }
-
-
-        .step-circle::before {
-            color: #4285f4;
-            width: 130px;
-            position: absolute;
-            text-align: center;
-            bottom: -30px;
-            font-size: 14px;
-            font-weight: 500;
-            text-align: center;
-        }
-
-        .step-circle.active::before {
-            font-weight: 700;
-        }
-
-        .step-circle.pending::before {
-            color: #9e9e9e;
-        }
-
-        .user-information-step::before {
-            content: "User Information";
-        }
-
-        .inquiry-step::before {
-            content: "Inquiry";
-        }
-
-        .complete-step::before {
-            content: "Complete";
-        }
-        .hidden {
-            display: none;
-        }
-        
-        .contact-modal-footer {
-                grid-template-columns: repeat(3, 30%);
-                grid-gap: 15px;
-        }
-        
-        .contact-modal-footer .contact-button {
-                padding: 15px;
-                background-color: #4285f4;
-                color: #fff;
-                border-radius: 10px;
-        }
-        
-        .contact-modal-footer .contact-modal-next {
-                grid-column-start: 3
-        }
-        
-        .contact-modal-footer .contact-modal-back {
-                grid-column-start: 2;
-                background-color: #fff;
-                color: #5f5f5f;
-        }
-        
-        `;
-document.head.appendChild(contactModalStyle);
-
+// import css
+var link = document.createElement('link');
+link.setAttribute('rel', 'stylesheet');
+link.setAttribute('href', 'https://cdn.jsdelivr.net/gh/jsncrz/jsncrz-technical-assessment@main/styles/contact-style.css');
+document.head.appendChild(link);
 
 replaceContact();
-
-const sectionStyle = document.createElement('style');
-sectionStyle.textContent = `
-        .contact-glassmorphism {
-                height: 300px;
-                padding: 3rem 1.25rem;
-                position: relative;
-        }
-        .contact-glassmorphism-container {
-                height: 300px;
-                background: rgba(255, 255, 255, 0.80);
-                border-radius: 16px;
-                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-                backdrop-filter: blur(7.9px);
-                -webkit-backdrop-filter: blur(7.9px);
-                padding: 2em;
-        }
-        .contact-glassmoriphism h1 {
-                padding: 15px 0;
-        }
-        .contact-glassmorphism button {
-                color: #fff;
-                background-color: #508336;
-                padding: 3px 10px 3px 10px;
-                margin: 15px 0
-                font-size: 16px;
-                font-weight: bold;
-                text-shadow: 0px 2px #335325;
-                border: 0;
-                transition: all 0.3s ease;
-                -webkit-box-shadow: 0px -6px 0px 0px #67a346, 0px 6px 0px 0px #335325, 6px 0px 0px 0px #335325, -6px 0px 0px 0px #335325, 0px -6px 0px 3px #000000, 0px 6px 0px 3px #000000, 6px 0px 0px 3px #000000, -6px 0px 0px 3px #000000, -6px 0px 0px 3px #000000, 0px 12px 0px 3px #88888888, -6px 6px 0px 3px #88888888,  6px 6px 0px 3px #88888888;
-                box-shadow: 0px -6px 0px 0px #67a346, 0px 6px 0px 0px #335325, 6px 0px 0px 0px #335325, -6px 0px 0px 0px #335325, 0px -6px 0px 3px #000000, 0px 6px 0px 3px #000000, 6px 0px 0px 3px #000000, -6px 0px 0px 3px #000000, -6px 0px 0px 3px #000000, 0px 12px 0px 3px #88888888, -6px 6px 0px 3px #88888888,  6px 6px 0px 3px #88888888;
-                cursor: pointer;
-                float: right;
-        }
-        .contact-glassmorphism button:hover {
-                background-color: #43702d;
-        }
-        .contact-glassmorphism button:disabled {
-                background-color: #ebe5e2;
-                color: #928b88;
-                -webkit-box-shadow: 0px -6px 0px 0px #ebe5e2, 0px 6px 0px 0px #ebe5e2, 6px 0px 0px 0px #ebe5e2, -6px 0px 0px 0px #ebe5e2, 0px -6px 0px 3px #928b88, 0px 6px 0px 3px #928b88, 6px 0px 0px 3px #928b88, -6px 0px 0px 3px #928b88, -6px 0px 0px 3px #928b88;
-                box-shadow: 0px -6px 0px 0px #ebe5e2, 0px 6px 0px 0px #ebe5e2, 6px 0px 0px 0px #ebe5e2, -6px 0px 0px 0px #ebe5e2, 0px -6px 0px 3px #928b88, 0px 6px 0px 3px #928b88, 6px 0px 0px 3px #928b88, -6px 0px 0px 3px #928b88, -6px 0px 0px 3px #928b88;
-
-                text-shadow: none;
-        }
-        .contact-glassmorphism button:focus {
-                -webkit-box-shadow: 0px -6px 0px 0px #67a346, 0px 6px 0px 0px #335325, 6px 0px 0px 0px #335325, -6px 0px 0px 0px #335325, 0px -6px 0px 3px #000000, 0px 6px 0px 3px #000000, 6px 0px 0px 3px #000000, -6px 0px 0px 3px #000000, -6px 0px 0px 3px #000000;
-                box-shadow: 0px -6px 0px 0px #67a346, 0px 6px 0px 0px #335325, 6px 0px 0px 0px #335325, -6px 0px 0px 0px #335325, 0px -6px 0px 3px #000000, 0px 6px 0px 3px #000000, 6px 0px 0px 3px #000000, -6px 0px 0px 3px #000000, -6px 0px 0px 3px #000000;
-
-        }
-        .contact-glassmorphism button:active {
-                text-shadow: none;
-                background-color: #396227;
-                -webkit-box-shadow: 0px -6px 0px 0px #396227, 0px 6px 0px 0px #396227, 6px 0px 0px 0px #396227, -6px 0px 0px 0px #396227, 0px -6px 0px 3px #000000, 0px 6px 0px 3px #000000, 6px 0px 0px 3px #000000, -6px 0px 0px 3px #000000, -6px 0px 0px 3px #000000;
-                box-shadow: 0px -6px 0px 0px #396227, 0px 6px 0px 0px #396227, 6px 0px 0px 0px #396227, -6px 0px 0px 0px #396227, 0px -6px 0px 3px #000000, 0px 6px 0px 3px #000000, 6px 0px 0px 3px #000000, -6px 0px 0px 3px #000000, -6px 0px 0px 3px #000000;
-
-        }
-        `;
-document.head.appendChild(sectionStyle);
-
-document.querySelector('.contact-glassmorphism-container button').click()
