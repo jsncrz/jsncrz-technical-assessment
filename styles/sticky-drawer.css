@@ -1,0 +1,308 @@
+
+.footer-drawer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: none;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+}
+
+#drawer-backdrop {
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 999;
+}
+
+
+.drawer-header {
+    border-radius: 10px 10px 0px 0px;
+    height: 40px;
+    width: 300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    background: #ffa500;
+    color: white;
+    user-select: none;
+    padding: 0 1rem;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.pagination-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+}
+
+.pagination-arrow {
+    width: 20px;
+    height: 20px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination-arrow:hover:not(:disabled) {
+    color: white;
+}
+
+.pagination-arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.drawer-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
+
+.chevron {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+    opacity: 0.8;
+}
+
+.chevron.expanded {
+    transform: rotate(180deg);
+}
+
+.drawer-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: white;
+}
+
+.drawer-content.expanded {
+    max-height: 600px;
+    height: 500px;
+}
+
+.content-inner {
+    padding: 2rem;
+    background: white;
+}
+
+.drawer-grid {
+    display: flex;
+    gap: 1.5rem;
+    transition: transform 0.3s ease;
+    will-change: transform;
+}
+
+.drawer-card {
+    flex: 0 0 calc(25% - 1.125rem);
+    min-width: 280px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.card-header {
+    text-transform: capitalize;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 16px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.card-body {
+    flex: 1;
+    padding: 16px;
+    text-align: center;
+    overflow-y: auto;
+}
+
+.card-footer {
+    text-align: center;
+    padding: 12px;
+}
+
+.card-body-image {
+    background: white;
+    border: 2px solid #50505020;
+    border-radius: 5px;
+}
+
+.card-body-image img {
+    width: 130px;
+    height: auto;
+}
+
+.card-details {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 0px;
+
+}
+
+.card-body-pokemon-details,
+.card-body-abilities,
+.card-body-moves {
+    flex: 1;
+}
+
+.card-body-pokemon-details {
+    text-align: left;
+}
+
+.card-body-abilities li,
+.card-body-moves li {
+    text-transform: capitalize;
+    list-style: none;
+    text-align: left;
+    padding-left: 15px;
+}
+
+.card-body-moves ul {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+}
+
+@media (max-width: 768px) {
+    .main-content h1 {
+        font-size: 2rem;
+    }
+
+    .drawer-card {
+        flex: 0 0 100%;
+        /* 1 card on mobile */
+        min-width: 100%;
+    }
+
+    .content-inner {
+        padding: 1.5rem;
+    }
+    .drawer-grid {
+        gap: 0px;
+    }
+
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .drawer-card {
+        flex: 0 0 calc(50% - 0.75rem);
+        /* 2 cards on tablet */
+        min-width: calc(50% - 0.75rem);
+    }
+    .drawer-grid {
+        gap: 1em;
+    }
+}
+
+
+
+/* card flip*/
+
+.flipper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 400px;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    background: #fff;
+    border-radius: 15px;
+}
+
+.card-front {
+    background: #f2f2f2;
+}
+
+.card-back {
+    background: #000000;
+    transform: rotateY(180deg);
+    color: #fff;
+}
+
+.flipped {
+    transform: rotateY(180deg);
+}
+
+.flipped .flip-btn {
+    background: #fff;
+    color: #000;
+}
+
+.flipped .flip-btn:hover {
+    background: #ccc;
+    color: #000;
+}
+
+.flip-btn {
+    padding: 8px 16px;
+    border: none;
+    background: #000;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.flip-btn:hover {
+    background: #333;
+}
+
+/* dragging */
+
+.content-inner {
+    touch-action: pan-y pinch-zoom; /* Allow vertical scrolling but enable horizontal touch gestures */
+    cursor: grab;
+    user-select: none; /* Prevent text selection on container */
+}
+
+.content-inner.dragging {
+    cursor: grabbing;
+}
+
+.drawer-grid.dragging {
+    transition: none; /* Disable transition while dragging */
+}
+
+/* global */
+.backdrop-shown {
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 1 !important;  
+}
