@@ -457,7 +457,8 @@ if (document.readyState === 'loading') {
 
     let link = document.createElement('link');
     link.setAttribute('rel', 'stylesheet');
-    link.setAttribute('href', '../styles/sticky-drawer.css');
+    link.setAttribute('href', 'https://cdn.jsdelivr.net/gh/jsncrz/jsncrz-technical-assessment/styles/sticky-drawer.css');
+
     document.head.appendChild(link);
 
 }
