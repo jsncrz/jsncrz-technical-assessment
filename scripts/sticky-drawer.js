@@ -426,8 +426,6 @@ async function initializeDrawer() {
 
     // Initialize pagination
     updateCardsPerPage();
-
-    window.handleAction = handleAction;
 }
 
 async function getRandomPokemon(id) {
