@@ -78,6 +78,11 @@ var changeWhyLiftMap = function () {
             });
         });
 }
+// import css
+var link = document.createElement('link');
+link.setAttribute('rel', 'stylesheet');
+link.setAttribute('href', 'https://cdn.jsdelivr.net/gh/jsncrz/jsncrz-technical-assessment@main/styles/liftmap.css');
+document.head.appendChild(link);
 
 /**
  * Calls both updateHeader and changeWhyLiftMap functions to update the page content
