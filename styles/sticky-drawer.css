@@ -184,22 +184,21 @@
 
 .card-body-pokemon-details p {
     font-size: 16px;
-    line-height: 0;
+    line-height: 1em;
 }
 
 .card-body-abilities h4,
 .card-body-moves h4 {
     font-size: 16px;
-    line-height: 0;
+    line-height: 1em;
 }
 .card-body-abilities li,
 .card-body-moves li {
     text-transform: capitalize;
     list-style: none;
     text-align: left;
-    padding-left: 15px;
     font-size: 16px;
-    line-height: 0;
+    line-height: 1.2em;
 }
 
 .card-body-moves ul {
