@@ -31,7 +31,7 @@
     cursor: pointer;
     position: relative;
     background: #ffa500;
-    color: white;
+    color: #fff;
     user-select: none;
     padding: 0 1rem;
 }
@@ -65,7 +65,7 @@
 }
 
 .pagination-arrow:hover:not(:disabled) {
-    color: white;
+    color: #fff;
 }
 
 .pagination-arrow:disabled {
@@ -94,20 +94,22 @@
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    background: white;
+    background: #fff;
 }
 
 .drawer-content.expanded {
     max-height: 600px;
-    height: 500px;
+    height: 550px;
 }
 
 .content-inner {
     padding: 2rem;
-    background: white;
+    background: #fff;
 }
 .card-back .card-header-banner h4,
-.card-back .card-header-text h6 {
+.card-back .card-header-text h6,
+.card-back .card-body-abilities h4,
+.card-back .card-body-moves h4 {
     color: #fff;
 }
 .card-header-banner h4 {
@@ -152,7 +154,7 @@
 }
 
 .card-body-image {
-    background: white;
+    background: #fff;
     border: 2px solid #50505020;
     border-radius: 5px;
 }
@@ -187,8 +189,7 @@
 .card-body-abilities h4,
 .card-body-moves h4 {
     font-size: 16px;
-    color: white;
-    line-height: unset;
+    line-height: 0;
 }
 .card-body-abilities li,
 .card-body-moves li {
@@ -197,7 +198,7 @@
     text-align: left;
     padding-left: 15px;
     font-size: 16px;
-    line-height: unset;
+    line-height: 0;
 }
 
 .card-body-moves ul {
@@ -253,7 +254,7 @@
 .card-back {
     position: absolute;
     width: 100%;
-    height: 400px;
+    height: 450px;
     backface-visibility: hidden;
     display: flex;
     flex-direction: column;
