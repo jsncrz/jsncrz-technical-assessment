@@ -20,7 +20,6 @@
     z-index: 999;
 }
 
-
 .drawer-header {
     border-radius: 10px 10px 0px 0px;
     height: 40px;
@@ -107,6 +106,10 @@
     padding: 2rem;
     background: white;
 }
+.card-back .card-header-banner h4,
+.card-back .card-header-text h6 {
+    color: #fff;
+}
 .card-header-banner h4 {
     font-size: 14px;
 }
@@ -184,6 +187,8 @@
 .card-body-abilities h4,
 .card-body-moves h4 {
     font-size: 16px;
+    color: white;
+    line-height: unset;
 }
 .card-body-abilities li,
 .card-body-moves li {
@@ -192,6 +197,7 @@
     text-align: left;
     padding-left: 15px;
     font-size: 16px;
+    line-height: unset;
 }
 
 .card-body-moves ul {
